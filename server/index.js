@@ -12,13 +12,16 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 //later on credentials will be secured by creating env variables and storing the connection URL
-const CONNECTION_URL ="mongodb+srv://miglekuba:jukosiukas1@cluster0.kgkbl.mongodb.net/<dbname>?retryWrites=true&w=majority";
+const CONNECTION_URL =
+  "mongodb+srv://miglekuba:12345@cluster0.kgkbl.mongodb.net/<dbname>?retryWrites=true&w=majority";
 const PORT = process.env.PORT || 5000;
 
 //connecting to the database
-mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => app.listen(PORT, () => console.log(`Server runnning on port: ${PORT}`)))
+mongoose
+  .connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() =>
+    app.listen(PORT, () => console.log(`Server runnning on port: ${PORT}`))
+  )
   .catch((error) => console.log(error.message));
 
-mongoose.set('useFindAndModify', false);
-
+mongoose.set("useFindAndModify", false);
